@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Home page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container bg-darkgrey">
+    <div class="well">
+        <h1>Aplikacja do obsługi reklamacji</h1>
+    </div>
+    <!--ALERTS-->
+    <div th:if="${clicked}" class="alert alert-success fade in alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aeria-label="close" title="close">&times;</a>
+        <strong>Success!</strong> You log in.
+    </div>
+
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#" class="btn disabled">Home</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="#" class="text-right">Sign in</a> |
+                <a href="#" th:href="@{/login}">Log in</a>
+            </div>
+        </div>
+    </div>
+    <a href="#" th:href="@{/complaints}">Consumer Complaints App</a>
+</div>
+</body>
+</html>

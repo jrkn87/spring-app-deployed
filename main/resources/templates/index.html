@@ -1,18 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Home page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Document</title>
 </head>
+
 <body>
-    <header>
-        <h1>Welcome!</h1>
-        <hr>
-    </header>
-    <footer>
-        <mail>
-            jrkn87@gmail.com
-        </mail>
-    </footer>
+  <div class="main">
+    <nav class="nav">
+      <ul class="nav-group">
+        <li class="nav-el">
+          <a href="#" th:href="@{/jrk}" class="nav-el-link">
+            <div class="nav-el-content">
+              <p class="person">Kamil Kowalski</p>
+              <p class="technologies">java spring etc</p>
+            </div>
+          </a>
+        </li>
+        <li class="nav-el">
+          <a href="#" th:href="@{/mrc}" class="nav-el-link">
+            <div class="nav-el-content">
+              <p class="person">Ryszard Nowak</p>
+              <p class="technologies">html css js react etc</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </body>
+
 </html>

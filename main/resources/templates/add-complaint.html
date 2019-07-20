@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Reklamację</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+	  <div class="well">
+		<h1>Dodaj nową reklamacji</h1>
+	  </div>
+		<!--ALERTS-->
+	  <div th:if="${clicked}" class="alert alert-success fade in alert-dismissible">
+		<a href="#" class="close" data-dismiss="alert" aeria-label="close" title="close">&times;</a>
+		<strong>Success!</strong> You log in.
+		</div>
+		<!--MENU-->
+	  	<div class="page-header">
+		  <div class="row">
+			  <div class="col-md-6">
+				  <a href="#" th:href="@{/jrk}">Home</a>
+				  &raquo;
+				  <a href="#" th:href="@{/complaints}">Complaints</a>
+				  &raquo;
+				  <a href="#" class="btn disabled"> Add complaint</a>
+			  </div>
+			  <div class="col-md-6 text-right">
+				  <a href="#" class="text-right">Sign in</a> |
+				  <a href="#" th:href="@{/login}">Log in</a>
+			  </div>
+		  	</div>
+	  	</div>
+		<!--FORM-->
+		<h2>Dodaj reklamację:</h2><br><br>
+		<form action="/add-complaint" th:action="@{/add-complaint}" method="post" th:object="${consumer}" class="justify-content-md-center">
+			<div class="form-group row">
+				<label for="firstname" class="col-sm-2 col-form-label">Imię</label>
+				<div class="col-sm-10">
+					<input th:field="*{firstName}" type="text" class="form-control" id="firstname" placeholder="Imię">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="lastname" class="col-sm-2 col-form-label">Nazwisko</label>
+				<div class="col-sm-10">
+					<input th:field="*{lastName}" type="text" class="form-control" id="lastname" placeholder="Nazwisko">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-2">Firma</div>
+				<div class="col-sm-10">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="przykladowyCheckbox" disabled>
+						<label class="form-check-label" for="przykladowyCheckbox">
+							tylko jeżeli na firmę
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="nip" class="col-sm-2 col-form-label">NIP</label>
+				<div class="col-sm-10">
+					<input th:field="*{nip}" type="number" class="form-control" id="nip" placeholder="1928374605">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col">
+					<button type="submit" class="btn btn-primary btn-block">Wyślij</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

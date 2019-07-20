@@ -1,4 +1,4 @@
-package net.jrk.demoapp;
+package net.usermd.jrkn87;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
