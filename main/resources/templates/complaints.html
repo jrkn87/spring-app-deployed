@@ -13,7 +13,7 @@
 		<div class="col-md-12">
 			<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 				<a class="navbar-brand" href="/jrk" th:href="@{/jrk}">
-					<img src="img/logo-680-sh.png" width="150px" height="100%" alt="logo">
+					<img src="img/logo-white.png" width="150px" height="100%" alt="logo">
 				</a>
 				<ul class="navbar-nav  mr-auto"></ul>
 				<ul class="navbar-nav">
@@ -51,7 +51,7 @@
 				<!--CONTENT START-->
 				
 							<div class="col-md-12 table-responsive">
-								<table class="table table-hover table-bordered">
+								<table class="table table-hover table-bordered shadow p-3 mb-5 bg-white rounded">
 								<caption>
 									<a class="btn btn-secondary" style="margin-bottom: 15px;" href="/add-complaint" th:href="@{/add-complaint}">Dodaj reklamację</a>
 								</caption>
@@ -59,6 +59,7 @@
 										<tr>
 											<th>#</th>
 											<th>Data przyjęcia</th>
+											<th>Status</th>
 											<th>Przedmiot</th>
 											<th>Klient</th>
 											<th>Ilość dni</th>
@@ -69,6 +70,7 @@
 										<tr th:each="complaint : ${complaints}">
 											<td><a th:href="${'/details?id='+complaint.id}" th:text="${complaint.id}+'/REK/'+${complaint.startDate.getYear()}"></a></td>
 											<td th:text="${complaint.startDate}"></td>
+											<td th:text="${complaint.status}"></td>
 											<td th:text="${complaint.product.productName}"></td>
 											<td th:text="${complaint.client.clientName}"></td>
 											<td th:text="${complaint.durationTimeOnDays}"></td>
@@ -89,7 +91,7 @@
 			<div class="container-fluid py-3">
 					<div class="row">
 							<div class="col-md-6">
-								<a href="https://github.com/jrkn87/spring-app-deployed.git'" class="btn btn-link text-white">Project on GitHub</a>
+								<a href="https://github.com/jrkn87/spring-app-deployed.git" target="_blank" class="btn btn-link text-white">Project on GitHub</a>
 							</div>
 							<div class="col-md-3"></div>
 							<div class="col-md-3 text-right small align-self-end">©2019 JRKN87</div>

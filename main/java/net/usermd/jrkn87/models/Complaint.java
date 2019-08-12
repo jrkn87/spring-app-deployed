@@ -37,7 +37,7 @@ public class Complaint implements Serializable {
 
     public Complaint() {
         this.status = Status.NOWA;
-        this.startDate = LocalDate.now();
+        this.startDate = LocalDate.now().plusDays(1);
         this.pushServiceDate = null;
         this.pullServiceDate = null;
         this.pickupDate = null;

@@ -13,7 +13,7 @@
 		<div class="col-md-12">
 			<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 				<a class="navbar-brand" href="/jrk" th:href="@{/jrk}">
-					<img src="img/logo-680-sh.png" width="150px" height="100%" alt="logo">
+					<img src="img/logo-white.png" width="150px" height="100%" alt="logo">
 				</a>
 				<ul class="navbar-nav  mr-auto"></ul>
 				<ul class="navbar-nav">
@@ -51,53 +51,63 @@
 				<!--CONTENT START-->
 				
 				<form action="/add-complaint" th:action="@{/add-complaint}" method="post" th:object="${complaint}" class="justify-content-md-center">
-				<!--CLIENT-INFO-->		
-					<div class="card">
-						<div class="card-body">
-							<div class="form-group row">
-								<label for="nazwa" class="col-sm-2 col-form-label">Nazwa klienta</label>
-								<div class="col-sm-4">
-									<input th:field="*{client.clientName}"  type="text" class="form-control" id="nazwa" placeholder="nazwa klienta">
-								</div>
-								<label for="tel" class="col-sm-2 col-form-label">Telefon</label>
-								<div class="col-sm-4">
-									<input th:field="*{client.phoneNumber}"  type="tel" class="form-control" id="tel" placeholder="telefon">
-								</div>
-							</div>
-						</div>
-					</div>
-				<!--PRODUCT-INFO-->			
-					<div class="card">
-						<div class="card-body">
-							<div class="form-group row">
-								<label for="nazwa_produktu" class="col-sm-2 col-form-label">Nazwa produktu</label>
-								<div class="col-sm-4">
-									<input th:field="*{product.productName}"  type="text" class="form-control" id="nazwa_produktu" placeholder="nazwa produktu">
-								</div>
-								<label for="producent" class="col-sm-2 col-form-label">Producent</label>
-								<div class="col-sm-4">
-									<input th:field="*{product.producer}"  type="text" class="form-control" id="producent" placeholder="producent">
-								</div>
-								<label for="nr_seryjny" class="col-sm-2 col-form-label">Nr seryjny</label>
-								<div class="col-sm-4">
-									<input th:field="*{product.serialNumber}" type="numer" class="form-control" id="nr_seryjny" placeholder="numer seryjny urządzenia">
-								</div>
-							</div>
-						</div>
-					</div>
-				<!--DESCRIPTION-->			
-					<div class="card">
-						<div class="card-body">
-							<div class="form-group row">
-								<label for="nr_seryjny" class="col-sm-2 col-form-label">Opis</label>
-								<div class="col-sm-10">
-									<textarea th:field="*{description}" class="form-control" aria-label="Dodaj opis:" placeholder="dodaj opis usterki.."></textarea>
-								</div>
-							</div>
-						</div>
-					</div>
+					<!--CLIENT-INFO-->
+						<div class="card shadow p-3 mb-5 bg-white rounded">
+							<div class="card-body">
+								<div class="form-group row">
+									<div class="col-lg-4">
+										<label for="nazwa" class="col-lg-12 col-form-label">Nazwa klienta</label>
+										<div class="col-lg-12">
+											<input th:field="*{client.clientName}"  type="text" class="form-control" id="nazwa" placeholder="nazwa klienta">
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<label for="tel" class="col-lg-12 col-form-label">Telefon</label>
+										<div class="col-lg-12">
+											<input th:field="*{client.phoneNumber}"  type="tel" class="form-control" id="tel" placeholder="0">
+										</div>
+									</div>
+									<div class="col-lg-4">
 
-					<br><input class="btn btn-secondary" type="submit" value="Zarejestruj reklamację">
+									</div>
+									<div class="col-lg-4">
+										<label for="nazwa_produktu" class="col-lg-12 col-form-label">Nazwa produktu</label>
+										<div class="col-lg-12">
+											<input th:field="*{product.productName}"  type="text" class="form-control" id="nazwa_produktu" placeholder="nazwa produktu">
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<label for="producent" class="col-lg-12 col-form-label">Producent</label>
+										<div class="col-lg-12">
+											<input th:field="*{product.producer}"  type="text" class="form-control" id="producent" placeholder="producent">
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<label for="nr_seryjny" class="col-lg-12 col-form-label">Nr seryjny</label>
+										<div class="col-lg-12">
+											<input th:field="*{product.serialNumber}" type="numer" class="form-control" id="nr_seryjny" placeholder="numer seryjny urządzenia">
+										</div>
+									</div>
+									<div class="col-lg-12">
+
+									</div>
+									<div class="col-lg-6">
+										<label for="opis" class="col-sm-12 col-form-label">Opis</label>
+										<div class="col-sm-12">
+											<textarea th:field="*{description}" class="form-control" id="opis" aria-label="Dodaj opis:" placeholder="dodaj opis usterki.."></textarea>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<label for="uwagi" class="col-sm-12 col-form-label">Uwagi</label>
+										<div class="col-sm-12">
+											<textarea th:field="*{comment}" class="form-control" id="uwagi" aria-label="Jakieś uwagi:" placeholder="jakieś uwagi.."></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<input class="btn btn-secondary" type="submit" value="Zarejestruj reklamację">
 
 				</form>
 				
@@ -113,7 +123,7 @@
 			<div class="container-fluid py-3">
 					<div class="row">
 							<div class="col-md-6">
-								<a href="https://github.com/jrkn87/spring-app-deployed.git'" class="btn btn-link text-white">Project on GitHub</a>
+								<a href="https://github.com/jrkn87/spring-app-deployed.git" target="_blank" class="btn btn-link text-white">Project on GitHub</a>
 							</div>
 							<div class="col-md-3"></div>
 							<div class="col-md-3 text-right small align-self-end">©2019 JRKN87</div>
