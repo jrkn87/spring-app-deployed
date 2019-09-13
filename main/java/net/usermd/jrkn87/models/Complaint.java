@@ -1,12 +1,11 @@
 package net.usermd.jrkn87.models;
 
-import net.usermd.jrkn87.classes.Status;
+import net.usermd.jrkn87.utils.Status;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.Period;
+import java.time.*;
 
 @Entity
 public class Complaint implements Serializable {
@@ -37,7 +36,7 @@ public class Complaint implements Serializable {
 
     public Complaint() {
         this.status = Status.NOWA;
-        this.startDate = LocalDate.now().plusDays(1);
+        this.startDate = LocalDate.now();
         this.pushServiceDate = null;
         this.pullServiceDate = null;
         this.pickupDate = null;
@@ -54,8 +53,7 @@ public class Complaint implements Serializable {
         this.product = null;
     }
 
-    public Complaint(Status status, LocalDate startDate, LocalDate pushServiceDate, LocalDate pullServiceDate, LocalDate pickupDate, int durationTimeOnDays, int durationTimeOnDaysInService, String comment, boolean isArchive, @NotNull String description, String additionalDescription, String result, String decision, String pickupWay, Client client, Product product) {
-        this.status = status;
+    public Complaint(LocalDate startDate, LocalDate pushServiceDate, LocalDate pullServiceDate, LocalDate pickupDate, int durationTimeOnDays, int durationTimeOnDaysInService, String comment, boolean isArchive, @NotNull String description, String additionalDescription, String result, String decision, String pickupWay, Client client, Product product) {
         this.startDate = startDate;
         this.pushServiceDate = pushServiceDate;
         this.pullServiceDate = pullServiceDate;
@@ -93,7 +91,7 @@ public class Complaint implements Serializable {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate() {
         this.startDate = startDate;
     }
 
@@ -101,31 +99,27 @@ public class Complaint implements Serializable {
         return pushServiceDate;
     }
 
-    public void setPushServiceDate(LocalDate pushServiceDate) {
-        this.pushServiceDate = pushServiceDate;
+    public void setPushServiceDate() {
+        this.pushServiceDate = LocalDate.now();
     }
 
     public LocalDate getPullServiceDate() {
         return pullServiceDate;
     }
 
-    public void setPullServiceDate(LocalDate pullServiceDate) {
-        this.pullServiceDate = pullServiceDate;
+    public void setPullServiceDate() {
+        this.pullServiceDate = LocalDate.now();
     }
 
     public LocalDate getPickupDate() {
         return pickupDate;
     }
 
-    public void setPickupDate(LocalDate pickupDate) {
-        this.pickupDate = pickupDate;
+    public void setPickupDate() {
+        this.pickupDate = LocalDate.now();
     }
 
     public int getDurationTimeOnDays() {
-        LocalDate localDate = LocalDate.now();
-        Period between = Period.between(this.startDate, localDate);
-        Integer daysElapsed = between.getDays ();
-        durationTimeOnDays = daysElapsed;
         return durationTimeOnDays;
     }
 

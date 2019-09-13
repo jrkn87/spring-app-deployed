@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Complaint details | Portfolio_App</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
+<title>Complaint details | Portfolio_App</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body style="height: 100vh; font-size: 12px; padding: 0px;">
 	<div class="row h-100">
@@ -43,132 +46,130 @@
 			</div>
 		</div>
 		<div class="col-md-12">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row">
-					<div class="col-md-2">
-							<ul class="nav flex-column">
-								<li class="nav-item">
-									<a class="nav-link btn btn-secondary btn-block disabled" style="margin-bottom: 15px;" href="#">Dodaj reklamację</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link btn btn-secondary btn-block" style="margin-bottom: 15px;" href="#">Zmień status</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link btn btn-secondary btn-block" style="margin-bottom: 15px;" href="#">Archiwizuj</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link btn btn-secondary btn-block" style="margin-bottom: 15px;" href="#">Link</a>
-								</li>
-						</ul>
-					</div> 
 					<div class="col">
 						<div class="row">
 							<div class="col-md-12"></div>
 				<!--CONTENT START-->
-				<!--1-->
-							<div class="col-lg-4">
-							<div class="card shadow p-3 mb-5 bg-white rounded">
-								<div class="card-body">
-									<div class="row">
-										<div class="col"><b>Id complaint:</b></div>
-										<div class="col" th:text="${complaint.id}"></div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Current status:</b></div>
-										<div class="col" th:text="${complaint.status}">in service</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Complaint time:</b></div>
-										<div class="col" th:text="${complaint.durationTimeOnDays}">17 day/s</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Time in service:</b></div>
-										<div class="col" th:text="${complaint.durationTimeOnDaysInService}">12 day/s</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Client:</b></div>
-										<div class="col" th:text="${complaint.client.clientName}">Jan Kowalski</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Phone:</b></div>
-										<div class="col" th:text="${complaint.client.phoneNumber}">596684413</div>
-									</div>
-								</div>
+							<div class="col-md-12 table-responsive">
+								<table class="table shadow p-3 mb-5 bg-white rounded">
+								<caption>
+									<a class="btn btn-secondary" style="margin-bottom: 15px;" data-toggle="modal" data-target="#myModal" href="#">Zmień status</a>
+								</caption>
+									<thead class="thead-light">
+										<tr>
+											<th>Numer reklamacji</th>
+											<th>Status</th>
+											<th>Ilość dni</th>
+											<th>Ilość dni w serwisie</th>
+											<th>Uwagi</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td th:text="${complaint.id}">21345</td>
+											<td th:text="${complaint.status}">w serwisie</td>
+											<td th:text="${complaint.durationTimeOnDays}">12</td>
+											<td th:text="${complaint.durationTimeOnDaysInService}">21</td>
+											<td th:text="${complaint.comment}">Brak</td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td><br></td>
+										</tr>										
+									</tbody>
+									<thead class="thead-light">
+										<tr>
+											<th>Data</th>
+											<th>Data</th>
+											<th>Data</th>
+											<th>Data</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td th:text="${complaint.startDate}">219-05-21</td>
+											<td th:text="${complaint.pushServiceDate}">219-05-21</td>
+											<td th:text="${complaint.pullServiceDate}">-</td>
+											<td th:text="${complaint.pickupDate}">219-05-21</td>
+											<td></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td><br></td>
+										</tr>										
+									</tbody>
+									<thead class="thead-light">
+										<tr>
+											<th>Klient</th>
+											<th>Tel</th>
+											<th></th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td th:text="${complaint.client.clientName}">Nowak</td>
+											<td th:text="${complaint.client.phoneNumber}">516854798</td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td><br></td>
+										</tr>										
+									</tbody>
+									<thead class="thead-light">
+										<tr>
+											<th>Produkt</th>
+											<th>Producent</th>
+											<th>Numer seryjny</th>
+											<th>Stan urządzenia</th>
+											<th>Opis</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td th:text="${complaint.product.productName}">Bosh</td>
+											<td th:text="${complaint.product.producer}">Bosh</td>
+											<td th:text="${complaint.product.serialNumber}">98745646321654987</td>
+											<td th:text="${complaint.product.deviceStatus}">typowe ślady urzytkowania</td>
+											<td th:text="${complaint.description}">test test tes tes tes tetstetststetet etetetet s</td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td><br></td>
+										</tr>										
+									</tbody>
+									<thead class="thead-light">
+										<tr>
+											<th>Wynik reklamacji</th>
+											<th>Kontakt z serwisem</th>
+											<th>Decyzja klienta</th>
+											<th>Sposób odbioru</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td th:text="${complaint.result}">-</td>
+											<td th:text="${complaint.additionalDescription}">-</td>
+											<td th:text="${complaint.decision}">-</td>
+											<td th:text="${complaint.pickupWay}">-</td>
+											<td>-</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-							</div>
-				<!--2 DATE-->
-							<div class="col-lg-4">
-							<div class="card shadow p-3 mb-5 bg-white rounded">
-								<div class="card-body">
-									<div class="row">
-										<div class="col"><b>Data przyjęcia:</b></div>
-										<div class="col" th:text="${complaint.startDate}">12-05-2019</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Data wysłania na serwis:</b></div>
-										<div class="col" th:text="${complaint.pushServiceDate}">12-05-2019</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Data odebrania z serwisu:</b></div>
-										<div class="col" th:text="${complaint.pullServiceDate}">12-05-2019</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Data odebrania/wysłania do klienta:</b></div>
-										<div class="col" th:text="${complaint.pickupDate}">-</div>
-									</div>
-								</div>
-							</div>
-							</div>
-				<!--3-->
-							<div class="col-lg-4">
-							<div class="card shadow p-3 mb-5 bg-white rounded">
-								<div class="card-body">
-									<div class="row">
-										<div class="col"><b>Produkt - model:</b></div>
-										<div class="col" th:text="${complaint.product.productName}">Pilarka S1096</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Numer seryjny:</b></div>
-										<div class="col" th:text="${complaint.product.serialNumber}">KP1649582731664422</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Producent:</b></div>
-										<div class="col" th:text="${complaint.product.producer}">Beta</div>
-									</div><hr>
-									<div class="row">
-										<div class="col"><b>Opis reklamacji:</b></div>
-										<div class="col" th:text="${complaint.description}">Ogólnie znana teza głosi, iż użytkownika może rozpraszać zrozumiała zawartość strony, kiedy ten chce zobaczyć sam jej wygląd.</div>
-									</div>
-								</div>
-							</div>
-							</div>
-				<!--4-->
-							<div class="col-lg-4">
-								<div class="card shadow p-3 mb-5 bg-white rounded">
-									<div class="card-body">
-										<div class="row">
-											<div class="col"><b>Kontakt z serwisem:</b></div>
-											<div class="col" th:text="${complaint.additionalDescription}">użytkownika może rozpraszać zrozumiała zawartość strony</div>
-										</div><hr>
-										<div class="row">
-											<div class="col"><b>Decyzja klienta:</b></div>
-											<div class="col" th:text="${complaint.decision}">Zgadza się</div>
-										</div><hr>
-										<div class="row">
-											<div class="col"><b>Wynik reklamacji:</b></div>
-											<div class="col" th:text="${complaint.result}">Uznana-Naprawiona</div>
-										</div><hr>
-										<div class="row">
-											<div class="col"><b>Sposób odbioru klienta:</b></div>
-											<div class="col" th:text="${complaint.pickupWay}">Wysyłka</div>
-										</div><hr>
-										<div class="row">
-											<div class="col"><b>Uwagi:</b></div>
-											<div class="col" th:text="${complaint.comment}">brak</div>
-										</div>
-									</div>
-								</div>
-							</div>
+
 				<!--CONTENT END-->
 					</div>
 					</div>
@@ -177,16 +178,43 @@
 		</div>
 		<div class="col-md-12 align-self-end">
 			<footer class="bg-dark text-white">
-			<div class="container-fluid py-3">
-					<div class="row">
-							<div class="col-md-6">
-								<a href="https://github.com/jrkn87/spring-app-deployed.git" target="_blank" class="btn btn-link text-white">Project on GitHub</a>
+					<div class="container-fluid py-3">
+							<div class="row">
+									<div class="col-md-6">
+										<a href="https://github.com/jrkn87/spring-app-deployed.git" target="_blank" class="btn btn-link text-white">Project on GitHub</a>
+									</div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3 text-right small align-self-end">©2019 JRKN87</div>
 							</div>
-							<div class="col-md-3"></div>
-							<div class="col-md-3 text-right small align-self-end">©2019 JRKN87</div>
 					</div>
+			</footer>
+		</div>
+	</div>
+	<!-- The Modal -->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Zmień status reklamacji</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form action="#" th:action="@{/test}" th:object="${complaint}" method="post">
+						<input type="hidden" th:field="*{id}">
+						<div class="form-group">
+							<label for="statuss">Select list (select one):</label>
+							<select th:field="*{status}" class="form-control" id="statuss" name="statuslist">
+								<option th:each="stat : ${allStatus}"
+										th:text="${stat}"
+										th:value="${stat.name()}"></option>
+							</select>
+						</div>
+						<button type="submit" class="d-flex ml-auto btn btn-secondary">Zmień status</button>
+					</form>
+				</div>
 			</div>
-	</footer>
 		</div>
 	</div>
 </body>

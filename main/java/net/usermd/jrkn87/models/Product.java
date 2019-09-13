@@ -17,13 +17,15 @@ public class Product implements Serializable {
     private String producer;
     @NotNull
     private int serialNumber;
+    private String deviceStatus;
 
     public Product() {}
 
-    public Product(@NotNull String productName, @NotNull String producer, @NotNull int serialNumber) {
+    public Product(@NotNull String productName, @NotNull String producer, @NotNull int serialNumber, String deviceStatus) {
         this.productName = productName;
         this.producer = producer;
         this.serialNumber = serialNumber;
+        this.deviceStatus = deviceStatus;
     }
 
     public Long getId() {
@@ -60,6 +62,14 @@ public class Product implements Serializable {
 
     public void setSerialNumber(int serialNumber) {
         this.serialNumber = serialNumber;
+    }
+
+    public String getDeviceStatus() {
+        return deviceStatus;
+    }
+
+    public void setDeviceStatus(String deviceStatus) {
+        this.deviceStatus = deviceStatus;
     }
 
     @Override

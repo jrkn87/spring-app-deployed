@@ -35,11 +35,12 @@
 					<li class="breadcrumb-item"><a href="/jrk" th:href="@{/jrk}" class="text-light">
 						<img src="img/home-icon.png" alt="Logo" style="width:20px; height: auto">
 					</a></li>
-					<li class="breadcrumb-item text-dark active" aria-current="page">Complaints</li>
+					<li class="breadcrumb-item"><a href="/complaints" th:href="@{/complaints}" class="text-light">Complaints</a></li>
+					<li class="breadcrumb-item text-dark active" aria-current="page">Complaints archive</li>
 				</ol>
 			</nav>
 			<div class="d-flex justify-content-center" style="margin: 15px 0;">
-				<h4>Lista reklamacji</h4>
+				<h4>Archiwum | Lista reklamacji</h4>
 			</div>
 		</div>
 		<div class="col-md-12">
@@ -51,10 +52,9 @@
 				<!--CONTENT START-->
 				
 							<div class="col-md-12 table-responsive">
-								<table class="table table-sm table-hover table-bordered shadow p-3 mb-5 bg-white rounded">
+								<table class="table table-hover table-bordered shadow p-3 mb-5 bg-white rounded">
 								<caption>
 									<a class="btn btn-secondary" style="margin-bottom: 15px;" href="/add-complaint" th:href="@{/add-complaint}">Dodaj reklamację</a>
-									<a class="btn btn-secondary" style="margin-bottom: 15px;" href="/add-complaint" th:href="@{/archive}">Archiwum reklamacji</a>
 								</caption>
 									<thead class="thead-light">
 										<tr>
@@ -65,21 +65,17 @@
 											<th>Klient</th>
 											<th>Ilość dni</th>
 											<th>Uwagi</th>
-											<th>Opcje</th>
-											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="complaint : ${complaints}">
-											<td th:text="${complaint.id}+'/REK/'+${complaint.startDate.getYear()}"></td>
+											<td><a th:href="${'/details?id='+complaint.id}" th:text="${complaint.id}+'/REK/'+${complaint.startDate.getYear()}"></a></td>
 											<td th:text="${complaint.startDate}"></td>
 											<td th:text="${complaint.status}"></td>
 											<td th:text="${complaint.product.productName}"></td>
 											<td th:text="${complaint.client.clientName}"></td>
 											<td th:text="${complaint.durationTimeOnDays}"></td>
 											<td th:text="${complaint.comment}"></td>
-											<td><a th:href="${'/details?id='+complaint.id}">Szczegóły</a></td>
-											<td><a th:href="${'/remove?id='+complaint.id}" class="text-danger">Usuń</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -93,16 +89,16 @@
 		</div>
 		<div class="col-md-12 align-self-end">
 			<footer class="bg-dark text-white">
-					<div class="container-fluid py-3">
-							<div class="row">
-									<div class="col-md-6">
-										<a href="https://github.com/jrkn87/spring-app-deployed.git" target="_blank" class="btn btn-link text-white">Project on GitHub</a>
-									</div>
-									<div class="col-md-3"></div>
-									<div class="col-md-3 text-right small align-self-end">©2019 JRKN87</div>
+			<div class="container-fluid py-3">
+					<div class="row">
+							<div class="col-md-6">
+								<a href="https://github.com/jrkn87/spring-app-deployed.git" target="_blank" class="btn btn-link text-white">Project on GitHub</a>
 							</div>
+							<div class="col-md-3"></div>
+							<div class="col-md-3 text-right small align-self-end">©2019 JRKN87</div>
 					</div>
-			</footer>
+			</div>
+	</footer>
 		</div>
 	</div>
 </body>
