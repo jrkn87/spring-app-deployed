@@ -43,76 +43,115 @@
 			</div>
 		</div>
 		<div class="col-md-12">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row">
 					<div class="col">
 						<div class="row">
 							<div class="col-md-12">
 				<!--CONTENT START-->
-				
+
 				<form action="/add-complaint" th:action="@{/add-complaint}" method="post" th:object="${complaint}" class="justify-content-md-center">
-					<!--CLIENT-INFO-->
 						<div class="card shadow p-3 mb-5 bg-white rounded">
 							<div class="card-body">
 								<div class="form-group row">
-									<div class="col-lg-4">
-										<label for="nazwa" class="col-lg-12 col-form-label">Nazwa klienta</label>
-										<div class="col-lg-12">
-											<input th:field="*{client.clientName}"  type="text" class="form-control" id="nazwa" placeholder="nazwa klienta">
-										</div>
+									<!--CLIENT-INFO-->
+									<div class="col-md-6 form-group">
+										<label for="clientName" class="form-label">Nazwa klienta / Firma</label>
+										<p class="text-danger" th:if="${#fields.hasErrors('client.clientName')}">
+											<strong th:errors="*{client.clientName}">Warning!</strong>
+										</p>
+										<input th:field="*{client.clientName}" type="text" class="form-control" id="clientName" placeholder="nazwa klienta/firmy">
 									</div>
-									<div class="col-lg-4">
-										<label for="tel" class="col-lg-12 col-form-label">Telefon</label>
-										<div class="col-lg-12">
-											<input th:field="*{client.phoneNumber}"  type="tel" class="form-control" id="tel" placeholder="0">
-										</div>
+									<div class="col-md-6 form-group">
+										<label for="nip" class="form-label">NIP</label>
+										<input th:field="*{client.nip}" type="numer" class="form-control" id="nip" placeholder="XXXXXXXXXX">
 									</div>
-									<div class="col-lg-4">
-
+									  <div class="col-md-6 form-group">
+										<label class="form-label" for="tel">Telefon</label>
+										  <p class="text-danger" th:if="${#fields.hasErrors('client.phoneNumber')}">
+											  <strong th:errors="*{client.phoneNumber}">Warning!</strong>
+										  </p>
+											<div class="input-group">
+											  <div class="input-group-prepend">
+												<div class="input-group-text">+48</div>
+											  </div>
+											  <input th:field="*{client.phoneNumber}" type="tel" class="form-control" id="tel" placeholder="XXXXXXXXX">
+											</div>
+									  </div>
+									<div class="col-md-6 form-group">
+										<label for="email" class="form-label">E-mail</label>
+										<input th:field="*{client.email}" type="email" class="form-control" id="email" placeholder="xxxxx@xxx.xx">
 									</div>
-									<div class="col-lg-4">
-										<label for="nazwa_produktu" class="col-lg-12 col-form-label">Nazwa produktu</label>
-										<div class="col-lg-12">
-											<input th:field="*{product.productName}"  type="text" class="form-control" id="nazwa_produktu" placeholder="nazwa produktu">
-										</div>
+									<div class="col-md-6 form-group">
+										<label for="advertising" class="form-label">Osoba zgłaszająca</label>
+										<p class="text-danger" th:if="${#fields.hasErrors('client.advertising')}">
+											<strong th:errors="*{client.advertising}">Warning!</strong>
+										</p>
+										<input th:field="*{client.advertising}" type="text" class="form-control" id="advertising" placeholder="osoba zgłaszająca reklamację">
 									</div>
-									<div class="col-lg-4">
-										<label for="producent" class="col-lg-12 col-form-label">Producent</label>
-										<div class="col-lg-12">
-											<input th:field="*{product.producer}"  type="text" class="form-control" id="producent" placeholder="producent">
-										</div>
+									<div class="col-md-12">
+										<hr>
 									</div>
-									<div class="col-lg-4">
-										<label for="nr_seryjny" class="col-lg-12 col-form-label">Nr seryjny</label>
-										<div class="col-lg-12">
-											<input th:field="*{product.serialNumber}" type="numer" class="form-control" id="nr_seryjny" placeholder="numer seryjny urządzenia">
-										</div>
+									<!--CLIENT-INFO-END-->
+									<!--PRODUCT-INFO-->
+									  <div class="col-md-6 form-group">
+										<label for="isWarranty">Pogwarancyjna ?</label>
+										<select class="form-control" id="isWarranty">
+										  <option value="Tak">Tak</option>
+										  <option value="Nie" selected>Nie</option>
+										</select>
+									  </div>
+									  <div class="col-md-6 form-group">
+									  </div>
+									<div class="col-md-6 form-group">
+										<label for="productName" class="form-label">Produkt</label>
+										<p class="text-danger" th:if="${#fields.hasErrors('product.productName')}">
+											<strong th:errors="*{product.productName}">Warning!</strong>
+										</p>
+										<input th:field="*{product.productName}" type="text" class="form-control" id="productName" placeholder="nazwa urządzenia">
 									</div>
-									<div class="col-lg-12">
-
+									<div class="col-md-6 form-group">
+										<label for="producer" class="form-label">Producent</label>
+										<p class="text-danger" th:if="${#fields.hasErrors('product.producer')}">
+											<strong th:errors="*{product.producer}">Warning!</strong>
+										</p>
+										<input th:field="*{product.producer}" type="text" class="form-control" id="producer" placeholder="producent">
 									</div>
-									<div class="col-lg-6">
-										<label for="opis" class="col-sm-12 col-form-label">Opis</label>
-										<div class="col-sm-12">
-											<textarea th:field="*{description}" class="form-control" id="opis" aria-label="Dodaj opis:" placeholder="dodaj opis usterki.."></textarea>
-										</div>
+									<div class="col-md-6 form-group">
+										<label for="serialNumber" class="form-label">Numer seryjny</label>
+										<p class="text-danger" th:if="${#fields.hasErrors('product.serialNumber')}">
+											<strong th:errors="*{product.serialNumber}">Warning!</strong>
+										</p>
+										<input th:field="*{product.serialNumber}" type="text" class="form-control" id="serialNumber" placeholder="numer seryjny">
 									</div>
-									<div class="col-lg-6">
-										<label for="uwagi" class="col-sm-12 col-form-label">Uwagi</label>
-										<div class="col-sm-12">
-											<textarea th:field="*{comment}" class="form-control" id="uwagi" aria-label="Jakieś uwagi:" placeholder="jakieś uwagi.."></textarea>
-										</div>
+									<div class="col-md-6 form-group">
+										<label for="deviceStatus" class="form-label">Stan urządzenia</label>
+										<input th:field="*{product.deviceStatus}" type="text" class="form-control" id="deviceStatus" placeholder="ślady urzytkowania, rysy, uszkodzony mechanicznie..">
 									</div>
+									  <div class="col-md-6 form-group">
+										<label for="description" class="form-label">Opis reklamacji</label>
+										  <p class="text-danger" th:if="${#fields.hasErrors('description')}">
+											  <strong th:errors="*{description}">Warning!</strong>
+										  </p>
+										<textarea th:field="*{description}" type="" class="form-control" id="description" placeholder="opis usterki"></textarea>
+									  </div>
+									  <div class="col-md-6 form-group">
+										<label for="comment" class="form-label">Uwagi</label>
+										<textarea th:field="*{comment}" type="" class="form-control" id="comment" placeholder="uwagi do zgłoszenia"></textarea>
+									  </div>
+									<div class="col-md-12">
+										<hr>
+									</div>
+									<!--PRODUCT-INFO-END-->
 								</div>
 							</div>
+
+							<input class="btn btn-secondary" type="submit" value="Zarejestruj reklamację">
 						</div>
 
-						<input class="btn btn-secondary" type="submit" value="Zarejestruj reklamację">
-
 				</form>
-				
+
 				<!--CONTENT END-->
-							</div>
 						</div>
 					</div>
 				</div>

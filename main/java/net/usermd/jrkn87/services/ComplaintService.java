@@ -1,12 +1,11 @@
 package net.usermd.jrkn87.services;
 
-import net.usermd.jrkn87.repositories.ComplaintRepository;
 import net.usermd.jrkn87.models.Complaint;
+import net.usermd.jrkn87.repositories.ComplaintRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,9 +54,8 @@ public class ComplaintService {
     }
 
     public void save(Complaint complaint) {
-        complaintRepository.save(complaint);
+            complaintRepository.save(complaint);
     }
-
     public void remove(Long id) {
         complaintRepository.deleteById(id);
     }

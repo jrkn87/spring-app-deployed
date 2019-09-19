@@ -1,7 +1,11 @@
 package net.usermd.jrkn87.models;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -11,17 +15,18 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotEmpty(message = "{net.usermd.jrkn87.models.Product.productName.NotEmpty}")
+    @Size(min = 3, message = "{net.usermd.jrkn87.models.Product.productName.Size}")
     private String productName;
-    @NotNull
+    @NotEmpty(message = "{net.usermd.jrkn87.models.Product.producer.NotEmpty}")
     private String producer;
-    @NotNull
-    private int serialNumber;
+    @NotEmpty(message = "{net.usermd.jrkn87.models.Product.serialNumber.NotEmpty}")
+    private String  serialNumber;
     private String deviceStatus;
 
     public Product() {}
 
-    public Product(@NotNull String productName, @NotNull String producer, @NotNull int serialNumber, String deviceStatus) {
+    public Product(@NotEmpty(message = "{net.usermd.jrkn87.models.Product.productName.NotEmpty}") @Size(min = 3, message = "{net.usermd.jrkn87.models.Product.productName.Size}") String productName, @NotEmpty(message = "{net.usermd.jrkn87.models.Product.producer.NotEmpty}") String producer, @NotEmpty(message = "{net.usermd.jrkn87.models.Product.serialNumber.NotEmpty}") String serialNumber, String deviceStatus) {
         this.productName = productName;
         this.producer = producer;
         this.serialNumber = serialNumber;
@@ -52,15 +57,11 @@ public class Product implements Serializable {
         this.producer = producer;
     }
 
-    public static long getSerilaVersionUID() {
-        return serilaVersionUID;
-    }
-
-    public int getSerialNumber() {
+    public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 
@@ -72,13 +73,18 @@ public class Product implements Serializable {
         this.deviceStatus = deviceStatus;
     }
 
+    public static long getSerilaVersionUID() {
+        return serilaVersionUID;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", productName='" + productName + '\'' +
                 ", producer='" + producer + '\'' +
-                ", serialNumber=" + serialNumber +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", deviceStatus='" + deviceStatus + '\'' +
                 '}';
     }
 }

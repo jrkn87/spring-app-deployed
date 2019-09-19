@@ -1,7 +1,12 @@
 package net.usermd.jrkn87.models;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -11,16 +16,24 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotEmpty(message = "{net.usermd.jrkn87.models.Client.clientName.NotEmpty}")
+    @Size(min = 3, message = "{net.usermd.jrkn87.models.Client.clientName.Size}")
     private String clientName;
-    @NotNull
-    private int phoneNumber;
+    @Pattern(regexp = "\\d{9}", message = "{net.usermd.jrkn87.models.Client.phoneNumer.Pattern}")
+    private String phoneNumber;
+    private String email;
+    private int nip;
+    @NotEmpty(message = "{net.usermd.jrkn87.models.Client.advertising.NotEmpty}")
+    private String advertising;
 
     public Client() {}
 
-    public Client(@NotNull String clientName, @NotNull int phoneNumber) {
+    public Client(@NotEmpty(message = "{net.usermd.jrkn87.models.Client.clientName.NotEmpty}") @Size(min = 3, message = "{net.usermd.jrkn87.models.Client.clientName.Size}") String clientName, @Pattern(regexp = "\\d{9}", message = "{net.usermd.jrkn87.models.Client.phoneNumer.Pattern}") String phoneNumber, String email, int nip, @NotEmpty(message = "{net.usermd.jrkn87.models.Client.advertising.NotEmpty}") String advertising) {
         this.clientName = clientName;
         this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.nip = nip;
+        this.advertising = advertising;
     }
 
     public Long getId() {
@@ -39,12 +52,36 @@ public class Client implements Serializable {
         this.clientName = clientName;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getNip() {
+        return nip;
+    }
+
+    public void setNip(int nip) {
+        this.nip = nip;
+    }
+
+    public String getAdvertising() {
+        return advertising;
+    }
+
+    public void setAdvertising(String advertising) {
+        this.advertising = advertising;
     }
 
     public static long getSerialVersionUID() {
@@ -56,7 +93,10 @@ public class Client implements Serializable {
         return "Client{" +
                 "id=" + id +
                 ", clientName='" + clientName + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", nip=" + nip +
+                ", advertising='" + advertising + '\'' +
                 '}';
     }
 }

@@ -1,9 +1,12 @@
 package net.usermd.jrkn87.models;
 
 import net.usermd.jrkn87.utils.Status;
+import net.usermd.jrkn87.utils.WarrantyStatus;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.*;
 
@@ -21,7 +24,8 @@ public class Complaint implements Serializable {
     private LocalDate pickupDate;
     private int durationTimeOnDays;
     private int durationTimeOnDaysInService;
-    @NotNull
+    @NotEmpty(message = "{net.usermd.jrkn87.models.Complaint.description.NotEmpty}")
+    @Size(min = 10, message = "{net.usermd.jrkn87.models.Complaint.description.Size}")
     private String description;
     private String additionalDescription;
     private String result;
@@ -29,9 +33,12 @@ public class Complaint implements Serializable {
     private String pickupWay;
     private String comment;
     private boolean isArchive;
+    private WarrantyStatus warranty;
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @Valid
     private Client client;
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @Valid
     private Product product;
 
     public Complaint() {
@@ -53,7 +60,7 @@ public class Complaint implements Serializable {
         this.product = null;
     }
 
-    public Complaint(LocalDate startDate, LocalDate pushServiceDate, LocalDate pullServiceDate, LocalDate pickupDate, int durationTimeOnDays, int durationTimeOnDaysInService, String comment, boolean isArchive, @NotNull String description, String additionalDescription, String result, String decision, String pickupWay, Client client, Product product) {
+    public Complaint(LocalDate startDate, LocalDate pushServiceDate, LocalDate pullServiceDate, LocalDate pickupDate, int durationTimeOnDays, int durationTimeOnDaysInService, String comment, boolean isArchive, String description, String additionalDescription, String result, String decision, String pickupWay, Client client, Product product) {
         this.startDate = startDate;
         this.pushServiceDate = pushServiceDate;
         this.pullServiceDate = pullServiceDate;
@@ -207,6 +214,14 @@ public class Complaint implements Serializable {
         this.product = product;
     }
 
+    public WarrantyStatus getWarranty() {
+        return warranty;
+    }
+
+    public void setWarranty(WarrantyStatus warranty) {
+        this.warranty = warranty;
+    }
+
     @Override
     public String toString() {
         return "Complaint{" +
@@ -223,6 +238,9 @@ public class Complaint implements Serializable {
                 ", result='" + result + '\'' +
                 ", decision='" + decision + '\'' +
                 ", pickupWay='" + pickupWay + '\'' +
+                ", comment='" + comment + '\'' +
+                ", isArchive=" + isArchive +
+                ", warranty=" + warranty +
                 ", client=" + client +
                 ", product=" + product +
                 '}';
