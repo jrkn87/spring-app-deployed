@@ -13,124 +13,89 @@
 						<div class="row">
 							<div class="col-md-12"></div>
 				<!--CONTENT START-->
-							<div class="col-md-12 table-responsive">
-								<table class="table shadow p-3 mb-5 bg-white rounded">
-								<caption>
+							<div class="card shadow p-3 mb-5 bg-white rounded">
+								<div class="card-header">
+									<h5 class="card-title" th:text="'Szczegóły reklamacji ' + ${complaint.id} + '/REK/2019'"></h5>
+								</div>
+								<div class="card-body">
+									<span class="card-title font-weight-bold">Status:</span>
+									<span th:text="' ' + ${complaint.status}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Ilość dni w reklamacji:</span>
+									<span th:text="' ' + ${complaint.durationTimeOnDays}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Ilość dni w serwisie:</span>
+									<span th:text="' ' + ${complaint.durationTimeOnDaysInService}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Uwagi:</span>
+									<span th:text="' ' + ${complaint.comment}"></span>
+									<hr>
+									<!---->
+									<span class="card-title font-weight-bold">Data przyjęcia zgłoszenia:</span>
+									<span th:text="' ' + ${complaint.startDate}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Data wysłania urządzenia do serwisu:</span>
+									<span th:text="' ' + ${complaint.pushServiceDate}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Data powrotu z serwisu:</span>
+									<span th:text="' ' + ${complaint.pullServiceDate}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Data zakończenia reklamacji:</span>
+									<span th:text="' ' + ${complaint.pickupDate}"></span>
+									<hr>
+									<!---->
+									<span class="card-title font-weight-bold">Nazwa klienta/Firma:</span>
+									<span th:text="' ' + ${complaint.client.clientName}"></span>
+									<br>
+									<span class="card-title font-weight-bold">NIP:</span>
+									<span th:text="' ' + ${complaint.client.nip}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Telefon:</span>
+									<span th:text="' ' + ${complaint.client.phoneNumber}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Email:</span>
+									<span th:text="' ' + ${complaint.client.email}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Osoba zgłąszająca:</span>
+									<span th:text="' ' + ${complaint.client.advertising}"></span>
+									<hr>
+									<!---->
+									<span class="card-title font-weight-bold">Nazwa urządzenia:</span>
+									<span th:text="' ' + ${complaint.product.productName}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Firma:</span>
+									<span th:text="' ' + ${complaint.product.producer}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Numer seryjny:</span>
+									<span th:text="' ' + ${complaint.product.serialNumber}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Stan urządzenia:</span>
+									<span th:text="' ' + ${complaint.product.deviceStatus}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Czy na gwarancji:</span>
+									<span th:text="' ' + ${complaint.warranty}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Opis usterki:</span>
+									<span th:text="' ' + ${complaint.description}"></span>
+									<hr>
+									<!---->
+									<span class="card-title font-weight-bold">Wynik reklamacji:</span>
+									<span th:text="' ' + ${complaint.result}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Kontakt z serwisem:</span>
+									<span th:text="' ' + ${complaint.additionalDescription}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Decyzja klienta:</span>
+									<span th:text="' ' + ${complaint.decision}"></span>
+									<br>
+									<span class="card-title font-weight-bold">Sposób odbioru sprzętu:</span>
+									<span th:text="' ' + ${complaint.pickupWay}"></span>
+									<hr>
+								</div>
+								<div class="card-footer">
 									<a class="btn btn-secondary" style="margin-bottom: 15px;" data-toggle="modal" data-target="#myModal" href="#">Zmień status</a>
-								</caption>
-									<thead class="thead-light">
-										<tr>
-											<th>Numer reklamacji</th>
-											<th>Status</th>
-											<th>Ilość dni</th>
-											<th>Ilość dni w serwisie</th>
-											<th>Uwagi</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td th:text="${complaint.id}">21345</td>
-											<td th:text="${complaint.status}">w serwisie</td>
-											<td th:text="${complaint.durationTimeOnDays}">12</td>
-											<td th:text="${complaint.durationTimeOnDaysInService}">21</td>
-											<td th:text="${complaint.comment}">Brak</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td><br></td>
-										</tr>										
-									</tbody>
-									<thead class="thead-light">
-										<tr>
-											<th>Data</th>
-											<th>Data</th>
-											<th>Data</th>
-											<th>Data</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td th:text="${complaint.startDate}">219-05-21</td>
-											<td th:text="${complaint.pushServiceDate}">219-05-21</td>
-											<td th:text="${complaint.pullServiceDate}">-</td>
-											<td th:text="${complaint.pickupDate}">219-05-21</td>
-											<td></td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td><br></td>
-										</tr>										
-									</tbody>
-									<thead class="thead-light">
-										<tr>
-											<th>Klient</th>
-											<th>Tel</th>
-											<th></th>
-											<th></th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td th:text="${complaint.client.clientName}">Nowak</td>
-											<td th:text="${complaint.client.phoneNumber}">516854798</td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td><br></td>
-										</tr>										
-									</tbody>
-									<thead class="thead-light">
-										<tr>
-											<th>Produkt</th>
-											<th>Producent</th>
-											<th>Numer seryjny</th>
-											<th>Stan urządzenia</th>
-											<th>Opis</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td th:text="${complaint.product.productName}">Bosh</td>
-											<td th:text="${complaint.product.producer}">Bosh</td>
-											<td th:text="${complaint.product.serialNumber}">98745646321654987</td>
-											<td th:text="${complaint.product.deviceStatus}">typowe ślady urzytkowania</td>
-											<td th:text="${complaint.description}">test test tes tes tes tetstetststetet etetetet s</td>
-										</tr>
-									</tbody>
-									<tbody>
-										<tr>
-											<td><br></td>
-										</tr>										
-									</tbody>
-									<thead class="thead-light">
-										<tr>
-											<th>Wynik reklamacji</th>
-											<th>Kontakt z serwisem</th>
-											<th>Decyzja klienta</th>
-											<th>Sposób odbioru</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td th:text="${complaint.result}">-</td>
-											<td th:text="${complaint.additionalDescription}">-</td>
-											<td th:text="${complaint.decision}">-</td>
-											<td th:text="${complaint.pickupWay}">-</td>
-											<td>-</td>
-										</tr>
-									</tbody>
-								</table>
+								</div>
 							</div>
-
 				<!--CONTENT END-->
 					</div>
 					</div>
