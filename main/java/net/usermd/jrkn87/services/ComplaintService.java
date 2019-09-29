@@ -3,6 +3,9 @@ package net.usermd.jrkn87.services;
 import net.usermd.jrkn87.models.Complaint;
 import net.usermd.jrkn87.repositories.ComplaintRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -49,10 +52,20 @@ public class ComplaintService {
         return daysElapsed;
     }
 
+    static public boolean isUserLoggedIn(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        boolean b = principal instanceof UserDetails;
+        return b;
+    }
+    static public String getUsername(){
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        String username = loggedInUser.getName();
+        return username;
+    }
+
     public Complaint getOne(Long id) {
         return complaintRepository.getOne(id);
     }
-
     public void save(Complaint complaint) {
             complaintRepository.save(complaint);
     }

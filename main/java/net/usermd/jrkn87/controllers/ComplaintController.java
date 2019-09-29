@@ -24,6 +24,8 @@ public class ComplaintController {
 
     @GetMapping("/complaints")
     public String getComplaints(Model model) {
+        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("username", ComplaintService.getUsername());
         List<Complaint> complaints = complaintService.complaintList();
         complaints.stream().forEach(c -> c.setDurationTimeOnDays(complaintService.getDurationTimeOnDays(c)));
         complaints.stream().forEach(c -> c.setDurationTimeOnDaysInService(complaintService.getDurationTimeOnDaysOnService(c)));
@@ -33,17 +35,23 @@ public class ComplaintController {
     }
     @GetMapping("/archive")
     public String getComplaintsArchive(Model model) {
+        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("username", ComplaintService.getUsername());
         List<Complaint> complaints = complaintService.complaintListArchive();
         model.addAttribute("complaints", complaints);
         return "complaints-archive";
     }
     @GetMapping("/add-complaint")
     public String complaint( Model model) {
+        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("username", ComplaintService.getUsername());
         model.addAttribute("complaint", new Complaint());
         return "add-complaint";
     }
     @GetMapping("/details")
     public String details(@RequestParam("id") Long id,Model model) {
+        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("username", ComplaintService.getUsername());
         Complaint complaint = complaintService.getOne(id);
         model.addAttribute("complaint", complaint);
         model.addAttribute("allStatus", Status.values());

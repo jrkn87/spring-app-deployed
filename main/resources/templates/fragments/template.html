@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div th:fragment="myHomeMenu">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
+        <a class="navbar-brand" href="/" th:href="@{/}">
+            <img th:src="@{img/logo-white.png}" width="150px" height="100%" alt="logo">
+        </a>
+        <ul class="navbar-nav  mr-auto"></ul>
+        <ul th:unless="${issLogged}" class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link btn btn-sm btn-link disabled" href="#">Sing in</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link btn btn-sm btn-link text-success" href="#" th:href="@{/login}">Lon in <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form th:if="${issLogged}" action="#" th:action="@{/logout}" method="post" class="nav-item">
+            <button class="nav-link btn btn-sm btn-link text-danger" type="submit">Log out</button>
+        </form>
+    </nav>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/complaints}">Complaints App</a>
+                </li>
+            </ul>
+            <span th:if="${issLogged}" class="navbar-brand" th:text="'Witaj, ' + ${username} + ' !'"></span>
+        </div>
+    </nav>
+</div>
+    <div th:fragment="myMenu">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark text-white">
+            <a class="navbar-brand" href="/" th:href="@{/}">
+                <img src="img/logo-white.png" width="150px" height="100%" alt="logo">
+            </a>
+            <ul class="navbar-nav  mr-auto"></ul>
+            <ul th:unless="${issLogged}" class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-sm btn-link disabled" href="#">Sing in</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link btn btn-sm btn-link text-success" href="#" th:href="@{/login}">Lon in <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form th:if="${issLogged}" action="#" th:action="@{/logout}" method="post" class="nav-item">
+                <button class="nav-link btn btn-sm btn-link text-danger" type="submit">Log out</button>
+            </form>
+        </nav>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/complaints}">Complaints</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/add-complaint}">Add new complaint</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/archive}">Archive</a>
+                    </li>
+                    <!--					<li class="nav-item">
+                                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                            </li>-->
+                </ul>
+                <span th:if="${issLogged}" class="navbar-brand" th:text="'Witaj, ' + ${username} + ' !'"></span>
+            </div>
+        </nav>
+    </div>
+    <div th:fragment="myFooter">
+        <footer class="bg-dark text-white">
+            <div class="container-fluid py-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="https://github.com/jrkn87/spring-app-deployed.git" target="_blank" class="btn btn-link text-white">Project on GitHub</a>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 text-right small align-self-end">©2019 JRKN87</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div th:fragment="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Zmień status reklamacji</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="#" th:action="@{/test}" th:object="${complaint}" method="post">
+                        <input type="hidden" th:field="*{id}">
+                        <div class="form-group">
+                            <label for="statuss">Select list (select one):</label>
+                            <select th:field="*{status}" class="form-control" id="statuss" name="statuslist">
+                                <option th:each="stat : ${allStatus}"
+                                        th:text="${stat}"
+                                        th:value="${stat.name()}"></option>
+                            </select>
+                        </div>
+                        <button type="submit" class="d-flex ml-auto btn btn-secondary">Zmień status</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

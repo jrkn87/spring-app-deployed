@@ -1,17 +1,17 @@
 package net.usermd.jrkn87.models;
 
 public class User {
-    private static boolean login;
+    private boolean login_status;
 
     public User() {
-        this.login = false;
+        this.login_status = false;
     }
 
-    public static boolean isLogin() {
-        return login;
+    public boolean isLogin() {
+        return login_status;
     }
 
-    public static void setLogin(boolean login) {
-        User.login = login;
+    public void setLogin(boolean login) {
+        this.login_status = login;
     }
 }
