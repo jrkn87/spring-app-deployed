@@ -1,7 +1,9 @@
 package net.usermd.jrkn87.services;
 
 import net.usermd.jrkn87.models.Complaint;
+import net.usermd.jrkn87.models.User;
 import net.usermd.jrkn87.repositories.ComplaintRepository;
+import net.usermd.jrkn87.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ComplaintService {
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     ComplaintRepository complaintRepository;
@@ -57,9 +61,14 @@ public class ComplaintService {
         boolean b = principal instanceof UserDetails;
         return b;
     }
-    static public String getUsername(){
+    public String getUsername(){
+        String username;
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        String username = loggedInUser.getName();
+        User user = userRepository.findByNick(loggedInUser.getName());
+        if (user != null)
+            username = user.getFirstName();
+        else
+            username = "Default_Name";
         return username;
     }
 

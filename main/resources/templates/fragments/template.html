@@ -53,7 +53,7 @@
             <ul class="navbar-nav  mr-auto"></ul>
             <ul th:unless="${issLogged}" class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link btn btn-sm btn-link disabled" href="#">Sing in</a>
+                    <a class="nav-link btn btn-sm btn-link" href="#" th:href="@{/register}">Sing in</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link btn btn-sm btn-link text-success" href="#" th:href="@{/login}">Lon in <span class="sr-only">(current)</span></a>
@@ -85,8 +85,8 @@
                                                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                                             </li>-->
                 </ul>
-                <span th:if="${issLogged}" class="navbar-brand" th:text="'Witaj, ' + ${username} + ' !'"></span>
             </div>
+            <span th:if="${issLogged}" class="navbar-brand" th:text="'Witaj, ' + ${username} + ' !'"></span>
         </nav>
     </div>
     <div th:fragment="myFooter">
