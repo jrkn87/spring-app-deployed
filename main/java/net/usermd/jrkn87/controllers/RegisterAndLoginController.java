@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -22,18 +23,22 @@ public class RegisterAndLoginController {
     }
 
     @GetMapping("/login")
-    public String login() {
-        return "login";
+    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
+        if (error != null)
+            model.addAttribute("error", "Zła nazwa użytkownika lub/i hasło!");
+        return "login-form";
     }
+
     @GetMapping("/register")
     public String getRegister(Model model) {
         model.addAttribute("user", new User());
-        return "registerForm";
+        return "register-form";
     }
+
     @PostMapping("/register")
     public String postRegister(@ModelAttribute @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "registerForm";
+            return "register-form";
         else {
             userService.addDefaultUserRole(user);
             return "registerSuccess";

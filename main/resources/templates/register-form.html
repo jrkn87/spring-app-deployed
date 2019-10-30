@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/template::head">
+</head>
+<body style="height: 100vh; font-size: 12px; padding: 0px;">
+<div class="d-flex justify-content-center align-items-center"  style="height: 100%;">
+	<form action="/register" th:action="@{/register}" method="post" th:object="${user}" class="justify-content-md-center w-50">
+						<div class="card shadow-lg bg-white rounded">
+						    <div class="card-header">						        
+						        <span class="card-title h2">Create your account!</span>
+						          <span class="fas fa-user-edit float-right" style="font-size: 3em"></span>
+						    </div>
+							<div class="card-body">
+									<div class="col-md-12 form-group">
+										<!--<label for="firstName" class="form-label font-weight-bold">Imię</label>-->
+										<p class="text-danger" th:if="${#fields.hasErrors('firstName')}">
+											<strong th:errors="*{firstName}">Warning!</strong>
+										</p>
+										<input th:field="*{firstName}" type="text" class="form-control form-control" id="firstName" placeholder="Imię *">
+									</div>
+									
+									<div class="col-md-12 form-group">
+										<!--<label for="lastName" class="form-label font-weight-bold">Nazwisko</label>-->
+										<p class="text-danger" th:if="${#fields.hasErrors('lastName')}">
+											<strong th:errors="*{lastName}">Warning!</strong>
+										</p>
+										<input th:field="*{lastName}" type="text" class="form-control form-control" id="lastName" placeholder="Nazwisko">
+									</div>
+								<div class="col-md-12 form-group">
+									<!--<label for="nick" class="form-label font-weight-bold">Nick</label>-->
+									<p class="text-danger" th:if="${#fields.hasErrors('nick')}">
+										<strong th:errors="*{nick}">Warning!</strong>
+									</p>
+									<input th:field="*{nick}" type="text" class="form-control form-control" id="nick" placeholder="nick *">
+								</div>
+								<div class="col-md-12 form-group">
+									<!--<label for="password" class="form-label font-weight-bold">Nick</label>-->
+									<p class="text-danger" th:if="${#fields.hasErrors('password')}">
+										<strong th:errors="*{password}">Warning!</strong>
+									</p>
+									<input th:field="*{password}" type="password" class="form-control form-control" id="password" placeholder="password *">
+								</div>
+									<div class="col-md-12 form-group">
+										<!--<label class="form-label font-weight-bold" for="mail">E-mail</label>-->
+										<p class="text-danger" th:if="${#fields.hasErrors('email')}">
+											<strong th:errors="*{email}">Warning!</strong>
+										</p>
+										<input th:field="*{email}" type="email" class="form-control form-control" id="mail" placeholder="xxx@xxx.xx *">
+									</div>
+									<p class="p-1">* Pola wymagane!</p>
+							</div>
+              <div class="card-footer">
+                 <input class="btn btn-block btn-sm btn-secondary" type="submit" value="Zarejestruj się">
+              </div>
+							
+						</div>
+
+				</form>
+
+	</div>			<!--CONTENT END-->
+</body>
+</html>
