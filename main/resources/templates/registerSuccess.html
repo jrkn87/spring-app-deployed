@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"></meta>
+<head th:insert="fragments/template::head">
     <title>Registration Success</title>
 </head>
 <body>
-<h1>Thanks for registration!</h1>
-<a href="#" th:href="@{/complaints}">Go to complaints list</a>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h1>Thanks for registration!</h1>
+            </div>
+            <div class="col">
+                <ul>
+                    <li>
+                        <a class="btn btn-link" href="#" th:href="@{/complaints}">Go to complaints list</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-link" href="#" th:href="@{/login}">Go to login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
