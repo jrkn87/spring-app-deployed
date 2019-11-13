@@ -31,6 +31,9 @@
                                     <p class="text-danger" th:if="${#fields.hasErrors('nick')}">
                                         <strong th:errors="*{nick}">Warning!</strong>
                                     </p>
+                                    <p class="text-danger" th:if="${err_user}">
+                                        <strong th:text="${err_user}">Warning!</strong>
+                                    </p>
                                     <input th:field="*{nick}" type="text" class="form-control" id="nick" placeholder="login *">
                                 </div>
                                 <div class="form-group">

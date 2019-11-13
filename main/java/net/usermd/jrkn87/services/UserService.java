@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private final String DEFAULT_ROLE = "ROLE_USER";
@@ -26,6 +28,10 @@ public class UserService {
     @Autowired
     public void setRoleRepository(UserRoleRepository roleRepository) {
         this.roleRepository = roleRepository;
+    }
+
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 
     public void addDefaultUserRole(User user) {
