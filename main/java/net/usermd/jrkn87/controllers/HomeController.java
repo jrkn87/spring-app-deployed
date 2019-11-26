@@ -16,8 +16,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("issLogged", complaintService.isUserLoggedIn());
         model.addAttribute("username", complaintService.getUsername());
-        return "home";
+        return "home_";
     }
 }

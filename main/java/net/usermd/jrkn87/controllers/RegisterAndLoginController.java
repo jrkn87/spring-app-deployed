@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 public class RegisterAndLoginController {
-    UserService userService;
+    private UserService userService;
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -39,20 +37,18 @@ public class RegisterAndLoginController {
 
     @PostMapping("/register")
     public String postRegister(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model) {
-        Set<String> allLogin = userService.getAll()
-                .stream()
-                .map(u -> u.getNick())
-                .collect(Collectors.toSet());
         if (bindingResult.hasErrors())
             return "register-form";
-        else if (allLogin.contains(user.getNick())) {
-            model.addAttribute("err_user", "Taki użytkownik istnieje już w bazie!!");
-            return "register-form";
-        }
-
         else {
-            userService.addDefaultUserRole(user);
-            return "registerSuccess";
+            User byUsername = userService.findByUsername(user.getNick());
+            if (byUsername != null) {
+                model.addAttribute("err_user", "Taki użytkownik istnieje już w bazie!!");
+                return "register-form";
+            }
+            else {
+                userService.addDefaultUserRole(user);
+                return "registerSuccess";
+            }
         }
     }
 }

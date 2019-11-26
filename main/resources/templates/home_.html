@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/template::head">
+  <title th:text="#{msg.title.home}">Home | Portfolio_App</title>
+</head>
+<body style="height: 100vh; margin: 0px; padding: 0px;">
+	<div class="container-fluid h-100 m-0 p-0">
+		<div class="row">
+			<div class="col-12" th:insert="fragments/template::myHomeMenu"></div>
+		</div>
+	</div>
+</body>
+</html>

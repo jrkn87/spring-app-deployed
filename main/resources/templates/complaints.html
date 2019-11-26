@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments/template::head">
-  <title>Complaint list | Portfolio_App</title>
+  <title th:text="#{msg.title.complaints}">Complaint list | Portfolio_App</title>
 </head>
 <body style="height: 100vh; font-size: 12px; padding: 0px;">
 	<div class="row h-100">
@@ -28,7 +28,6 @@
 											<th>Status</th>
 											<th>Przedmiot</th>
 											<th>Klient</th>
-											<th>Ilość dni</th>
 											<th>Uwagi</th>
 											<th>Opcje</th>
 											<th></th>
@@ -41,7 +40,6 @@
 											<td th:text="${complaint.status}"></td>
 											<td th:text="${complaint.product.productName}"></td>
 											<td th:text="${complaint.client.clientName}"></td>
-											<td th:text="${complaint.durationTimeOnDays}"></td>
 											<td th:text="${complaint.comment}"></td>
 											<td><a th:href="${'/details?id='+complaint.id}">Szczegóły</a></td>
 											<td><a th:href="${'/remove?id='+complaint.id}" class="text-danger">Usuń</a></td>

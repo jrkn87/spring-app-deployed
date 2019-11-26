@@ -24,33 +24,31 @@ public class ComplaintController {
 
     @GetMapping("/complaints")
     public String getComplaints(Model model) {
-        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("issLogged", complaintService.isUserLoggedIn());
         model.addAttribute("username", complaintService.getUsername());
-        List<Complaint> complaints = complaintService.complaintList();
-        complaints.stream().forEach(c -> c.setDurationTimeOnDays(complaintService.getDurationTimeOnDays(c)));
-        complaints.stream().forEach(c -> c.setDurationTimeOnDaysInService(complaintService.getDurationTimeOnDaysOnService(c)));
+        List<Complaint> complaints = complaintService.getAllByArchiveIsFalse();
         model.addAttribute("complaints", complaints);
         complaintService.update();
         return "complaints";
     }
     @GetMapping("/archive")
     public String getComplaintsArchive(Model model) {
-        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("issLogged", complaintService.isUserLoggedIn());
         model.addAttribute("username", complaintService.getUsername());
-        List<Complaint> complaints = complaintService.complaintListArchive();
+        List<Complaint> complaints = complaintService.getAllByArchiveIsTrue();
         model.addAttribute("complaints", complaints);
         return "complaints-archive";
     }
     @GetMapping("/add-complaint")
     public String complaint( Model model) {
-        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("issLogged", complaintService.isUserLoggedIn());
         model.addAttribute("username", complaintService.getUsername());
         model.addAttribute("complaint", new Complaint());
         return "add-complaint";
     }
     @GetMapping("/details")
     public String details(@RequestParam("id") Long id,Model model) {
-        model.addAttribute("issLogged", ComplaintService.isUserLoggedIn());
+        model.addAttribute("issLogged", complaintService.isUserLoggedIn());
         model.addAttribute("username", complaintService.getUsername());
         Complaint complaint = complaintService.getOne(id);
         model.addAttribute("complaint", complaint);
