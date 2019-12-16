@@ -14,31 +14,32 @@ import java.util.List;
 @Service
 public class ComplaintServiceImpl implements ComplaintService{
 
-        @Autowired
-        UserService userService;
+    @Autowired
+    UserService userService;
 
-        @Autowired
-        ComplaintRepository complaintRepository;
+    @Autowired
+    ComplaintRepository complaintRepository;
 
-        public boolean isUserLoggedIn(){
-            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            boolean b = principal instanceof UserDetails;
-            return b;
-        }
-        public String getUsername(){
-            String username;
-            Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-            User user = userService.findByUsername(loggedInUser.getName());
-            if (user != null)
-                username = user.getFirstName();
-            else
-                username = "Default_Name";
-            return username;
-        }
+    public boolean isUserLoggedIn(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        boolean b = principal instanceof UserDetails;
+        return b;
+    }
+    public String getUsername(){
+       String username;
+       Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+       User user = userService.findByUsername(loggedInUser.getName());
+       if (user != null)
+         username = user.getFirstName();
+       else
+         username = "Default_Name";
+       return username;
+     }
     @Override
     public Complaint getOne(Long id) {
             return complaintRepository.getOne(id);
         }
+    @Override
     public void save(Complaint complaint) {
             complaintRepository.save(complaint);
         }

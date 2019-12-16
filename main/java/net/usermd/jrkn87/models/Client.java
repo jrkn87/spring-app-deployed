@@ -22,7 +22,7 @@ public class Client implements Serializable {
     @Pattern(regexp = "\\d{9}", message = "{net.usermd.jrkn87.models.Client.phoneNumer.Pattern}")
     private String phoneNumber;
     private String email;
-    private int nip;
+    private long nip;
     @NotEmpty(message = "{net.usermd.jrkn87.models.Client.advertising.NotEmpty}")
     private String advertising;
 
@@ -68,11 +68,11 @@ public class Client implements Serializable {
         this.email = email;
     }
 
-    public int getNip() {
+    public long getNip() {
         return nip;
     }
 
-    public void setNip(int nip) {
+    public void setNip(long nip) {
         this.nip = nip;
     }
 
