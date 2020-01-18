@@ -16,20 +16,20 @@
 				
 							<div class="col-md-12 table-responsive">
 								<table class="table table-sm table-hover table-bordered shadow p-3 mb-5 bg-white rounded">
-								<h4>Lista reklamacji</h4>
+								<h4 th:text="#{msg.h.title}">Lista reklamacji</h4>
 								<caption>
-									<a class="btn btn-sm btn-secondary" style="margin-bottom: 15px;" href="/add-complaint" th:href="@{/add-complaint}">Dodaj reklamację</a>
-									<a class="btn btn-sm btn-secondary" style="margin-bottom: 15px;" href="/add-complaint" th:href="@{/archive}">Archiwum reklamacji</a>
+									<a class="btn btn-sm btn-secondary" style="margin-bottom: 15px;" href="/add-complaint" th:href="@{/add-complaint}" th:text="#{msg.link.addNewComplaint}">Dodaj reklamację</a>
+									<a class="btn btn-sm btn-secondary" style="margin-bottom: 15px;" href="/add-complaint" th:href="@{/archive}" th:text="#{msg.link.archive}">Archiwum reklamacji</a>
 								</caption>
 									<thead class="thead-light">
 										<tr>
 											<th>#</th>
-											<th>Data przyjęcia</th>
-											<th>Status</th>
-											<th>Przedmiot</th>
-											<th>Klient</th>
-											<th>Uwagi</th>
-											<th>Opcje</th>
+											<th th:text="#{msg.th.date}">Data przyjęcia</th>
+											<th th:text="#{msg.th.status}">Status</th>
+											<th th:text="#{msg.th.item}">Przedmiot</th>
+											<th th:text="#{msg.th.client}">Klient</th>
+											<th th:text="#{msg.th.comments}">Uwagi</th>
+											<th th:text="#{msg.th.options}">Opcje</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -41,8 +41,8 @@
 											<td th:text="${complaint.product.productName}"></td>
 											<td th:text="${complaint.client.clientName}"></td>
 											<td th:text="${complaint.comment}"></td>
-											<td><a th:href="${'/details?id='+complaint.id}">Szczegóły</a></td>
-											<td><a th:href="${'/remove?id='+complaint.id}" class="text-danger">Usuń</a></td>
+											<td><a th:href="${'/details?id='+complaint.id}" th:text="#{msg.link.details}">Szczegóły</a></td>
+											<td><a th:href="${'/remove?id='+complaint.id}" class="text-danger" th:text="#{msg.link.delete}">Usuń</a></td>
 										</tr>
 									</tbody>
 								</table>

@@ -42,7 +42,7 @@ public class RegisterAndLoginController {
         else {
             User byUsername = userService.findByUsername(user.getNick());
             if (byUsername != null) {
-                model.addAttribute("err_user", "Taki użytkownik istnieje już w bazie!!");
+                model.addAttribute("err_user", "error message");
                 return "register-form";
             }
             else {

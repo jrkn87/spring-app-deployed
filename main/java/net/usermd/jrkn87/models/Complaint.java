@@ -42,7 +42,7 @@ public class Complaint implements Serializable {
     private Product product;
 
     public Complaint() {
-        this.status = Status.NOWA;
+        this.status = Status.NEW;
         this.startDate = LocalDate.now();
         this.pushServiceDate = null;
         this.pullServiceDate = null;

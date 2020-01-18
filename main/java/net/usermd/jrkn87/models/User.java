@@ -16,6 +16,7 @@ public class User implements Serializable {
    @NotEmpty(message = "{net.usermd.jrkn87.models.user.firstName.NotEmpty}")
    private String firstName;
    private String lastName;
+   @Column(unique = true)
    @NotEmpty(message = "{net.usermd.jrkn87.models.user.nick.NotEmpty}")
    private String nick;
    @NotEmpty(message = "{net.usermd.jrkn87.models.user.password.NotEmpty}")

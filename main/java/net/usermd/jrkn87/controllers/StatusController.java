@@ -22,11 +22,11 @@ public class StatusController {
         Complaint updateComplaint = complaintService.getOne(complaint.getId());
         updateComplaint.setStatus(complaint.getStatus());
         Status status = complaint.getStatus();
-        if (status.equals(Status.WYSŁANE_NA_SERWIS))
+        if (status.equals(Status.SHIPPING))
             updateComplaint.setPushServiceDate();
-        if (status.equals(Status.ODBIÓR_Z_SERWISU))
+        if (status.equals(Status.PICK_UP))
             updateComplaint.setPullServiceDate();
-        if (status.equals(Status.ZAKONCZONA))
+        if (status.equals(Status.COMPLETED))
             updateComplaint.setArchive(true);
 
         complaintRepository.flush();
